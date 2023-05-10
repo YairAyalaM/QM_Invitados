@@ -16,7 +16,7 @@
         @csrf
         <div class="py-6">
             <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
-                <div class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url('https://nntheblog.com/wp-content/uploads/2022/06/%E2%9C%AE%C2%B0%E3%80%82%E2%9C%AC%EF%BD%A5%F0%9D%97%AC%F0%9D%98%82-%F0%9D%97%B6%F0%9D%98%80%F0%9D%97%B5%F0%9D%97%B6%F0%9D%97%B4%F0%9D%97%AE%F0%9D%97%BA%F0%9D%97%B6%E2%9C%AE%C2%B0%E3%80%82%E2%9C%AC%EF%BD%A5-1024x1024.jpg-1.webp')"></div>
+                <div class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url('https://i.pinimg.com/originals/d1/3d/5d/d13d5deec96e9464381587dc89ab6192.jpg')"></div>
                 <div class="w-full p-8 lg:w-1/2">
                     <h2 class="text-2xl font-semibold text-gray-700 text-center">Brand</h2>
                     <p class="text-xl text-gray-600 text-center">Welcome back!</p>
