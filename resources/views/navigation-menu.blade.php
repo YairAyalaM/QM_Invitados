@@ -11,7 +11,7 @@
                 <!--<img src="images/logo.png" alt="">-->
             </div>
 
-            <span class="logo_name">CodingLab</span>
+            <span class="logo_name">YairAyala</span>
         </div>
 
         <div class="menu-items">
@@ -82,7 +82,7 @@
                         <li>
                             <img src="{{ asset('assets/icons/user.png' )}}" /><a href="{{ route('profile.show') }}">My profile</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <img src="{{ asset('assets/icons/edit.png' )}}" /><a href="#">Edit profile</a>
                         </li>
                         <li>
@@ -91,7 +91,7 @@
                         <li>
                             <img src="{{ asset('assets/icons/settings.png' )}}" /><a href="#">Setting</a>
                         </li>
-                        <li><img src="{{ asset('assets/icons/question.png' )}}" /><a href="#">Help</a></li>
+                        <li><img src="{{ asset('assets/icons/question.png' )}}" /><a href="#">Help</a></li> -->
                         <li>
                             <img src="{{ asset('assets/icons/log-out.png' )}}" />
                             <form method="POST" action="{{ route('logout') }}" x-data>

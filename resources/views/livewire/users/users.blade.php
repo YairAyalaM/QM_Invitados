@@ -15,72 +15,74 @@
 						<input type="text" wire:model="term" class="block w-full py-2 pl-10 pr-3 text-sm placeholder-gray-500 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Buscar">
 					</div>
 				</div>
-				<form method="POST" action="{{ route('deletemultiple')}}">
-					{{ csrf_field()}}
-					<!-- <input type="submit" value="Eliminar comidas"> -->
-					<!-- <div>
+
+				{{ csrf_field()}}
+				<!-- <input type="submit" value="Eliminar comidas"> -->
+				<!-- <div>
 						<button type="submit" value="Eliminar comidas" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-200 dark:text-gray-400 dark:border-gray-100 dark:hover:bg-gray-100 dark:hover:border-gray-100 dark:focus:ring-white">Eliminar multiple</button>
 					</div> -->
-					<table class="table text-gray-400 border-separate space-y-6 text-sm">
-						<thead class="bg-gray-200 text-gray-500">
-							<tr>
-								<th class="p-3"></th>
-								<th class="p-3">Usuario</th>
-								<th class="p-3 text-left">Categoria</th>
-								<th class="p-3 text-left">check-In</th>
-								<th class="p-3 text-left">Action</th>
-							</tr>
-						</thead>
-						<tbody id="table">
-							@foreach($users as $user)
-							<tr class="bg-gray-200" data-id="{{$user->id}}">
-								<td class="p-3">
-									<!-- <div class="flex align-items-center">
+				<table class="table text-gray-400 border-separate space-y-6 text-sm">
+					<thead class="bg-gray-200 text-gray-500">
+						<tr>
+							<th class="p-3"></th>
+							<th class="p-3">Usuario</th>
+							<th class="p-3 text-left">Categoria</th>
+							<th class="p-3 text-left">check-In</th>
+							<th class="p-3 text-left">Action</th>
+						</tr>
+					</thead>
+					<tbody id="table">
+						@foreach($users as $user)
+						@if($user->id !== Auth::user()->id)
+						<tr class="bg-gray-200" data-id="{{$user->id}}">
+							<td class="p-3">
+								<!-- <div class="flex align-items-center">
 										<div class="ml-3">
 											<input value="{{$user->id}}" id="{{$user->id}}" type="checkbox" name="borrarRegistros[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-400 dark:border-gray-300">
 											<label for="checkbox-all-search" class="sr-only">checkbox</label>
 										</div>
 									</div> -->
-								</td>
-								<td class="p-3">
-									<div class="flex align-items-center">
-										<img class="handle cursor-grab rounded-full h-12 w-12  object-cover" src="{{$user->profile_photo_path}}" alt="unsplash image">
-										<div class="ml-3">
-											<div class="">{{$user->name}}</div>
-											<div class="text-gray-500">{{$user->email}}</div>
-										</div>
+							</td>
+							<td class="p-3">
+								<div class="flex align-items-center">
+									<img class="handle cursor-grab rounded-full h-12 w-12  object-cover" src="{{$user->profile_photo_path}}" alt="unsplash image">
+									<div class="ml-3">
+										<div class="">{{$user->name}}</div>
+										<div class="text-gray-500">{{$user->email}}</div>
 									</div>
-								</td>
-								<td class="p-3">
-									{{$user->name}}
-								</td>
-								<td class="p-3 font-bold">
-									<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in focus-within:shadow-outline">
-										<input wire:click="toggleStatus({{ $user->id }})" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer {{ $user->status ? 'border-blue-500 bg-blue-500' : 'border-red-500 bg-red-500' }}" />
-										<label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-									</div>
-									<span class="text-sm">{{ $user->status ? 'Asistio' : 'Ausente' }}</span>
-								</td>
+								</div>
+							</td>
+							<td class="p-3">
+								{{$user->name}}
+							</td>
+							<td class="p-3 font-bold">
+								<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in focus-within:shadow-outline">
+									<input wire:click="toggleStatus({{ $user->id }})" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer {{ $user->status ? 'border-blue-500 bg-blue-500' : 'border-red-500 bg-red-500' }}" />
+									<label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+								</div>
+								<span class="text-sm">{{ $user->status ? 'Asistio' : 'Ausente' }}</span>
+							</td>
 
-								<!-- <td class="p-3">
+							<!-- <td class="p-3">
 								<span class="bg-green-400 text-gray-50 rounded-md px-2">available</span>
 							</td> -->
-								<td class="p-3 ">
-									<!-- <a href="javascript:void(0)" wire:click.prevent='editar({{$user->id}})' class="text-gray-400 hover:text-gray-100 mr-2">
+							<td class="p-3 ">
+								<!-- <a href="javascript:void(0)" wire:click.prevent='editar({{$user->id}})' class="text-gray-400 hover:text-gray-100 mr-2">
 										<i class="material-icons-outlined text-base">visibility</i>
 									</a> -->
-									<a href="javascript:void(0)" wire:click.prevent='editar({{$user->id}})' class="text-gray-400 hover:text-gray-100  mx-2">
-										<i class="material-icons-outlined text-base">edit</i>
-									</a>
-									<a href="javascript:void(0)" wire:click.prevent='deleteConfirmation({{ $user->id }})' class="text-gray-400 hover:text-gray-100  mx-2">
-										<i class="material-icons-outlined text-base">delete_outline</i>
-									</a>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</form>
+								<a href="javascript:void(0)" wire:click.prevent='editar({{$user->id}})' class="text-gray-400 hover:text-gray-100  mx-2">
+									<i class="material-icons-outlined text-base">edit</i>
+								</a>
+								<a href="javascript:void(0)" wire:click.prevent='deleteConfirmation({{ $user->id }})' class="text-gray-400 hover:text-gray-100  mx-2">
+									<i class="material-icons-outlined text-base">delete_outline</i>
+								</a>
+							</td>
+						</tr>
+						@endif
+						@endforeach
+					</tbody>
+				</table>
+
 
 				<!-- @if($users->hasPages())
 				<div class="px-6 py-3">
@@ -188,7 +190,7 @@
 
 		<x-slot name="content">
 			<!-- form starts -->
-			<form action="{{ route('form.data') }}" name="demoform" id="demoform" method="POST" class="dropzone" enctype="multipart/form-data">
+			
 				@if($profile_photo_path)
 				@if($profile_photo_path == $profile_photo_path_old)
 				<div class="mb-8 flex justify-center">
@@ -301,7 +303,7 @@
 				Guardar
 			</x-danger-button>
 		</x-slot>
-		</form>
+		
 	</x-dialog-modal>
 	<!-- end modal -->
 </div>

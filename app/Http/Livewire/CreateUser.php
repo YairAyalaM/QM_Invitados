@@ -188,6 +188,7 @@ class CreateUser extends Component
          
          $this->cerrarModal();
          $this->limpiarCampos();
+         $this->emit('render');
     }
 
 }
