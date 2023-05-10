@@ -61,13 +61,15 @@
     </style>
 
     <x-danger-button wire:click="$set('open',true)">
-        Crear nuevo usuario
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>  Invitado
     </x-danger-button>
 
     <x-dialog-modal wire:model="open">
         <x-slot name="title">
             <div class="text-center">
-                Crear nuevo usuario
+                Agregar Invitado
             </div>
         </x-slot>
 
@@ -75,17 +77,17 @@
             <!-- form starts -->
             <form action="{{ route('form.data') }}" name="demoform" id="demoform" method="POST" class="dropzone" enctype="multipart/form-data">
                 @if($profile_photo_path)
-				@if($profile_photo_path == $profile_photo_path_old)
-				<div class="mb-8 flex justify-center">
-					<img class="object-center object-cover rounded-full h-36 w-36 mx-auto" src="{{$profile_photo_path}}" alt="photo">
-				</div>
-				@else
-				<div class="mb-8 flex justify-center">
-					<img class="object-center object-cover rounded-full h-36 w-36 mx-auto" src="{{$profile_photo_path->temporaryUrl()}}" alt="photo">
-				</div>
-				@endif
-				@endif
-                
+                @if($profile_photo_path == $profile_photo_path_old)
+                <div class="mb-8 flex justify-center">
+                    <img class="object-center object-cover rounded-full h-36 w-36 mx-auto" src="{{$profile_photo_path}}" alt="photo">
+                </div>
+                @else
+                <div class="mb-8 flex justify-center">
+                    <img class="object-center object-cover rounded-full h-36 w-36 mx-auto" src="{{$profile_photo_path->temporaryUrl()}}" alt="photo">
+                </div>
+                @endif
+                @endif
+
                 @csrf
                 <div class="form-group">
 
@@ -132,10 +134,10 @@
         <x-slot name="footer">
             <x-secondary-button class="form-group" wire:click="cerrarModal()">
                 Cancelar
-            </x-jet-secondary-button>
-            <x-danger-button wire:click="guardar()" type="submit" class="form-group">
-                Guardar
-            </x-danger-button>
+                </x-jet-secondary-button>
+                <x-danger-button wire:click="guardar()" type="submit" class="form-group">
+                    Guardar
+                </x-danger-button>
         </x-slot>
         </form>
     </x-dialog-modal>

@@ -37,6 +37,16 @@ class Users extends Component
         $this->abrirModal();
     }
 
+    public function toggleStatus($userId)
+{
+    $user = User::findOrFail($userId);
+    $user->status = !$user->status; // cambia el estado del usuario
+    $user->save();
+
+    $this->emit('userUpdated', $user->id, $user->status);
+}
+
+
     public function abrirModal() {
         $this->modal = true;
     }
