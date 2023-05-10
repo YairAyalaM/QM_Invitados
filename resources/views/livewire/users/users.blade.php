@@ -227,25 +227,6 @@
 						<span class="font-medium">Cargando imagen!</span> Espere un momento.
 					</div>
 				</div>
-				<!-- @if($profile_photo_path)
-				@if($profile_photo_path == $profile_photo_path_old)
-				<h1 class="text-center font-semibold mb-3 text-gray-700 text-2xl">Vista Previa </h1>
-				<div class="flex flex-col justify-center items-center pt-5 pb-6">
-					<img src="{{$profile_photo_path}}" style="width: 634px; border-radius: 0.375rem;">
-				</div>
-				@else
-				<h1 class="text-center font-semibold mb-3 text-gray-700 text-2xl">Vista Previa </h1>
-				<div class="flex flex-col justify-center items-center pt-5 pb-6">
-					<img style="width: 634px; border-radius: 0.375rem;" class="mb-4" src="{{$profile_photo_path->temporaryUrl()}}">
-				</div>
-				@endif
-				@endif -->
-				<!-- <div class="flex flex-col lg:flex-row  gap-4 mb-4">
-					<div class="mb-4">
-						<label for="profile_photo_path" class="block text-gray-700 text-sm font-bold mb-2">Imagen:</label>
-						<input type="file" wire:model="profile_photo_path" class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-secondarycolor" id="profile_photo_path">
-					</div>
-				</div> -->
 				<!-- dropzone -->
 
 				<!-- component -->

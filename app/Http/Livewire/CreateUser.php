@@ -22,9 +22,10 @@ class CreateUser extends Component
     {
         return view('livewire.create-user');
     }
-
+ 
     public function cerrarModal() {
         $this->open = false;
+        $this->limpiarCampos();
     }
 
     public function limpiarCampos(){
@@ -147,11 +148,36 @@ class CreateUser extends Component
         }
     }
 
-    public function guardar(Request $request)
+    public function guardar()
     {
+        if($this->profile_photo_path == $this->profile_photo_path_old){
+            $profile_photo_path = $this->profile_photo_path_old;
+        }
+        else{
+            $profile_photo_path = Storage::url($this->profile_photo_path->store('public/images'));
+        }
 
-        $this->storeData($request);
-        $this->storeImage($request);
+        $user=User::updateOrCreate(['id'=>$this->id_user],
+            [
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+                $position = $this->id_user,
+                // 'position' => $position,
+                'profile_photo_path' =>  $profile_photo_path,
+            ]);
+
+            // funcion para igual la posicion con el id
+            if(is_null($position)){
+                User::where('id',$user->id)->update([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'password' => $user->password,
+                    'profile_photo_path' => $user->profile_photo_path,
+                    'position' => $user->id,
+                ]);
+            }
+
         //  session()->flash('message',
         //     $this->id_asociacion ? '¡Actualización exitosa!' : '¡Alta Exitosa!');
         $this->alert('success', 'Alta exitosa!', [
@@ -162,8 +188,6 @@ class CreateUser extends Component
          
          $this->cerrarModal();
          $this->limpiarCampos();
-         //emit es para emitir un evento
-         $this->emit('render');
     }
 
 }
