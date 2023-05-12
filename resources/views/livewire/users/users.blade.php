@@ -24,9 +24,9 @@
 				<table class="table text-gray-400 border-separate space-y-6 text-sm">
 					<thead class="bg-gray-200 text-gray-500">
 						<tr>
-							<th class="p-3"></th>
+							<th class="p-3">Id</th>
 							<th class="p-3">Usuario</th>
-							<th class="p-3 text-left">Categoria</th>
+							<th class="p-3 text-left">Apellido</th>
 							<th class="p-3 text-left">check-In</th>
 							<th class="p-3 text-left">Action</th>
 						</tr>
@@ -36,12 +36,13 @@
 						@if($user->id !== Auth::user()->id)
 						<tr class="bg-gray-200" data-id="{{$user->id}}">
 							<td class="p-3">
-								<!-- <div class="flex align-items-center">
+								<div class="flex align-items-center">
 										<div class="ml-3">
-											<input value="{{$user->id}}" id="{{$user->id}}" type="checkbox" name="borrarRegistros[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-400 dark:border-gray-300">
-											<label for="checkbox-all-search" class="sr-only">checkbox</label>
+											<!-- <input value="{{$user->id}}" id="{{$user->id}}" type="checkbox" name="borrarRegistros[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-400 dark:border-gray-300">
+											<label for="checkbox-all-search" class="sr-only">checkbox</label> -->
+											{{$user->id}}
 										</div>
-									</div> -->
+									</div>
 							</td>
 							<td class="p-3">
 								<div class="flex align-items-center">

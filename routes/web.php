@@ -36,3 +36,7 @@ Route::post('/storeimgae',[CreateUser::class,'storeImage'])->name('form.img');
 
 Route::post('/storemultipleimage',[CreateUser::class,'storeMultipleImage'])->name('form.img2');
 
+Route::post('/checkin', 'App\Http\Controllers\CheckinController@store')->name('checkin.store');
+Route::get('/check', function () {
+    return view('check');
+});
