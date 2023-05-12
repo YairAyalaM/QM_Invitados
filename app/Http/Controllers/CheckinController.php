@@ -33,20 +33,23 @@ class CheckinController extends Controller
         $input = $request->validate([
             'user_id' => 'required|exists:users,id'
         ]);
-
+    
         $user_to_checkin = User::findOrFail($input['user_id']);
-
+    
         // Verificar si el usuario ya ha realizado el check-in
         if ($user_to_checkin->status) {
             return redirect()->back()->with('error', 'Este usuario ya ha realizado el check-in anteriormente.');
         }
-
+    
         // Actualizar el estado del usuario a "registrado"
         $user_to_checkin->status = true;
         $user_to_checkin->save();
-        
-
-        // Mostrar un mensaje de éxito
-        return redirect()->back()->with('success', 'Check-in registrado exitosamente.');
+    
+        // Obtener los datos del usuario actualizado
+        $user = User::findOrFail($user_to_checkin->id);
+    
+        // Mostrar un mensaje de éxito y los datos del usuario
+        return view('check', compact('user'))->with('success', 'Check-in registrado exitosamente.');
     }
+    
 }
